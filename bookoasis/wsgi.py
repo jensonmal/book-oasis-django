@@ -1,5 +1,5 @@
 """
-WSGI config for greatkart project.
+WSGI config for bookoasis project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -12,7 +12,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 from dj_static import Cling
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'greatkart.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bookoasis.settings')
 
 # application = get_wsgi_application()
 application = Cling(get_wsgi_application())

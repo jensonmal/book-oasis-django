@@ -52,7 +52,7 @@ SESSION_EXPIRE_SECONDS = 3600
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_TIMEOUT_REDIRECT = 'accounts/login'
 
-ROOT_URLCONF = 'greatkart.urls'
+ROOT_URLCONF = 'bookoasis.urls'
 
 TEMPLATES = [
     {
@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'greatkart.wsgi.application'
+WSGI_APPLICATION = 'bookoasis.wsgi.application'
 
 AUTH_USER_MODEL = 'accounts.Account'
 
@@ -143,7 +143,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
-    'greatkart/static',
+    'bookoasis/static',
 ]
 
 MEDIA_URL = '/media/'
