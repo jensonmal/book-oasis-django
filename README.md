@@ -1,5 +1,5 @@
-# bookoasisProject
-Project developed during the curse Django Ecommerce | Build advanced Django web application
+# GreatKartProject
+Project developed during the course Django Ecommerce | Build advanced Django web application
 
 
-Sample of the project: https://bookoasis-study-ecommerce.herokuapp.com/
+
