@@ -9,6 +9,7 @@ from accounts.models import Account
 class Product(models.Model):
     product_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
+    author_name = models.CharField(max_length=200, default='Unknown')
     description = models.TextField(max_length=500, blank=True)
     price = models.IntegerField()
     images = models.ImageField(upload_to='photos/products')
@@ -25,14 +26,16 @@ class Product(models.Model):
         return self.product_name
 
     def average_review(self):
-        reviews = ReviewRating.objects.filter(product=self, status=True).aggregate(average=Avg('rating'))
+        reviews = ReviewRating.objects.filter(
+            product=self, status=True).aggregate(average=Avg('rating'))
         avg = 0
         if reviews['average'] is not None:
             avg = float(reviews['average'])
         return avg
 
     def count_review(self):
-        reviews = ReviewRating.objects.filter(product=self, status=True).aggregate(count=Count('id'))
+        reviews = ReviewRating.objects.filter(
+            product=self, status=True).aggregate(count=Count('id'))
         count = 0
         if reviews['count'] is not None:
             count = int(reviews['count'])
@@ -48,14 +51,15 @@ class VariationManager(models.Manager):
 
 
 variation_category_choise = (
-        ('color', 'color'),
-        ('size', 'size'),
-    )
+    ('color', 'color'),
+    ('size', 'size'),
+)
 
 
 class Variation(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    variation_category = models.CharField(max_length=100, choices=variation_category_choise)
+    variation_category = models.CharField(
+        max_length=100, choices=variation_category_choise)
     variation_value = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
     created_date = models.DateField(auto_now=True)
@@ -82,7 +86,8 @@ class ReviewRating(models.Model):
 
 
 class ProductGallery(models.Model):
-    product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        Product, default=None, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='store/products/', max_length=255)
 
     def __str__(self):

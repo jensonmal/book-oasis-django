@@ -14,7 +14,8 @@ from store.models import Product
 
 def payments(request):
     body = json.loads(request.body)
-    order = Order.objects.get(user=request.user, is_ordered=False, order_number=body['orderID'])
+    order = Order.objects.get(
+        user=request.user, is_ordered=False, order_number=body['orderID'])
     # armazena os detalhes da transação na tabela Payments
     payment = Payment(
         user=request.user,
@@ -114,12 +115,13 @@ def place_order(request, total=0, quantity=0):
             dt = int(datetime.date.today().strftime('%d'))
             mt = int(datetime.date.today().strftime('%m'))
             d = datetime.date(yr, mt, dt)
-            current_date = d.strftime("%y%m%d")  # 20210615
+            current_date = d.strftime("%Y%m%d")  # 20210615
             order_number = current_date + str(data.id)  # 20210615+id
             data.order_number = order_number
             data.save()
 
-            order = Order.objects.get(user=current_user, is_ordered=False, order_number=order_number)
+            order = Order.objects.get(
+                user=current_user, is_ordered=False, order_number=order_number)
             context = {
                 'order': order,
                 'cart_items': cart_items,
