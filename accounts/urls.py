@@ -1,29 +1,22 @@
 from django.urls import path
-from .views import register
-from .views import login
-from .views import logout
-from .views import activate
-from .views import dashboard
-from .views import forgotpassword
-from .views import resetpassword_validate
-from .views import resetpassword
-from .views import my_orders
-from .views import edit_profile
-from .views import change_password
-from .views import order_detail
+from . import views
+
 
 urlpatterns = [
-    path('register/', register, name='register'),
-    path('login/', login, name='login'),
-    path('logout/', logout, name='logout'),
-    path('dashboard/', dashboard, name='dashboard'),
-    path('', dashboard, name='dashboard'),
-    path('activate/<uidb64>/<token>/', activate, name='activate'),
-    path('resetpassword_validate/<uidb64>/<token>/', resetpassword_validate, name='resetpassword_validate'),
-    path('forgotpassword/', forgotpassword, name='forgotpassword'),
-    path('resetpassword', resetpassword, name='resetpassword'),
-    path('my_orders/', my_orders, name='my_orders'),
-    path('edit_profile/', edit_profile, name='edit_profile'),
-    path('change_password/', change_password, name='change_password'),
-    path('order_detail/<int:order_id>/', order_detail, name='order_detail')
+    path('register/', views.register, name='register'),
+    path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('', views.dashboard, name='dashboard'),
+
+    path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('forgotPassword/', views.forgotPassword, name='forgotPassword'),
+    path('resetpassword_validate/<uidb64>/<token>/', views.resetpassword_validate, name='resetpassword_validate'),
+    path('resetPassword/', views.resetPassword, name='resetPassword'),
+
+    path('my_orders/', views.my_orders, name='my_orders'),
+    path('edit_profile/', views.edit_profile, name='edit_profile'),
+    path('change_password/', views.change_password, name='change_password'),
+    path('order_detail/<str:order_id>/', views.order_detail, name='order_detail'),
+    #path('all_orders/<str:order_id>/', views.order_detail, name='all_orders'),
 ]

@@ -1,0 +1,22 @@
+<!-- order_detail.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Detail</title>
+</head>
+<body>
+    <h1>Order Detail</h1>
+    <p>Order Number: {{ order.order_number }}</p>
+    <p>Customer: {{ order_product.created_at }}</p>
+    <p>Customer: {{ order.first_name }}</p>
+    <h2>Products:</h2>
+    <ul>
+        {% for order_product in order.orderproduct_set.all %}
+            <li>{{ order_product.product }} - Quantity: {{ order_product.quantity }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
